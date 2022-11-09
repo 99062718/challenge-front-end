@@ -5,10 +5,13 @@ body{
 #backgroundContainer{
     background-image: url("img/background.png");
     height: 100vh;
+    padding: 5vh;
+    padding-left: 10vh;
+    padding-right: 10vh;
 }
 
 #mainContainer{
     background-color: white;
-    height: 50%;
-    width: 50%;
+    height: 100%;
+    width: 100%;
 }
