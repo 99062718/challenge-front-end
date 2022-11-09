@@ -1,3 +1,14 @@
 body{
+    margin: auto;
+}
+
+#backgroundContainer{
     background-image: url("img/background.png");
+    height: 100vh;
+}
+
+#mainContainer{
+    background-color: white;
+    height: 50%;
+    width: 50%;
 }
