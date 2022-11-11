@@ -8,6 +8,17 @@ function changeDisplay(group, displayType){
     }
 }
 
+//changes text of elements
+function changeText(element, text){
+    document.getElementById(element).innerHTML(text)
+}
+
+function questionGen(questionNum, topic, question){
+    questionGroup = "questionScreen";
+    changeText("questionText", questionNum = ". " + topic);
+    changeText("questionText", question);
+}
+
 document.getElementById("startButton").addEventListener("click", function(){ changeDisplay("introScreen", "none"); });
 
 //changeDisplay("introScreen", "none");
