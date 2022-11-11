@@ -1,11 +1,11 @@
 //document.getElementById("mainContainer").classList changed elements classes
 
-//used to show or hide groups of elements
-function changeVisibility(group, visibleOrHidden){
+//mostly used to show or hide groups of elements
+function changeDisplay(group, displayType){
     var elements = document.getElementsByClassName(group);
     for(x = 0; x < elements.length; x++){
-        elements[x].style.visibility = visibleOrHidden;
+        elements[x].style.display = displayType;
     }
 }
 
-// changeVisibility("introScreen", "hidden");
+//changeDisplay("introScreen", "none");
