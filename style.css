@@ -27,3 +27,7 @@ body {
 #footer {
     width: 100%;
 }
+
+.iconText {
+    display: inline;
+}
