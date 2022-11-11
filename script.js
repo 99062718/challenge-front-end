@@ -8,4 +8,6 @@ function changeDisplay(group, displayType){
     }
 }
 
+document.getElementById("startButton").addEventListener("click", function(){ changeDisplay("introScreen", "none"); });
+
 //changeDisplay("introScreen", "none");
