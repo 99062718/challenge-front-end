@@ -25,7 +25,8 @@ var partijScore = {
     "50Plus": 0,
     "Vrijzinnige Partij": 0,
     "Niet Stemmers": 0
-}
+};
+var questionScore = {};
 
 parties.splice(parties.length - 2, 1);
 
@@ -48,19 +49,33 @@ function questionGen(topic, question){
     changeText("questionText", question);
 }
 
+//checks if question is already in questionScore or not
+function questionExistCheck(){
+    return currentQuestion in questionScore;
+}
+
 //handles user answers and goes to next question
 function answeredQuestion(answer){
+    if(!questionExistCheck()){
+        questionScore[currentQuestion] = {"subject": subjects[currentQuestion]["title"], "stance": answer, "multiplier": 1};
+    } else {
+        questionScore[currentQuestion]["stance"] = answer;
+    }
+
+    currentQuestion++;
+
+    if(currentQuestion == subjects.length){
+        finalScoreCalc();
+    } else {
+        questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
+    }
+}
+
+function finalScoreCalc(){
     for(x = 0; x < subjects[currentQuestion]["parties"].length; x++){
         if(subjects[currentQuestion]["parties"][x]["position"] == answer){
             partijScore[subjects[currentQuestion]["parties"][x]["name"]]++;
         }
-    }
-
-    currentQuestion++;
-    if(currentQuestion == subjects.length){
-
-    } else {
-        questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
     }
 }
 
