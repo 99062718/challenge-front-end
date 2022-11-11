@@ -39,12 +39,12 @@ function changeDisplay(group, displayType){
 
 //changes text of elements
 function changeText(element, text){
-    document.getElementById(element).innerHTML(text)
+    document.getElementById(element).innerHTML = text;
 }
 
 //generates new question
 function questionGen(topic, question){
-    changeText("topicText", currentQuestion = ". " + topic);
+    changeText("topicText", currentQuestion + 1 + ". " + topic);
     changeText("questionText", question);
 }
 
@@ -66,4 +66,5 @@ function answeredQuestion(answer){
 
 document.getElementById("startButton").addEventListener("click", function(){changeDisplay("introScreen", "none");});
 
-//changeDisplay("introScreen", "none");
+changeDisplay("introScreen", "none");
+questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
