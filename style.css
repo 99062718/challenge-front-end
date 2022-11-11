@@ -31,3 +31,18 @@ body {
 .iconText {
     display: inline;
 }
+
+.buttonDiv {
+    margin-top: 20vh;
+    width: 90vh;
+    height: 10vh;
+}
+
+.buttonDiv button {
+    display: inline;
+    height: 100%;
+    width: 20%;
+    color: white;
+    background-color: black;
+    margin-right: 5%;
+}
