@@ -79,7 +79,15 @@ function finalScoreCalc(){
     }
 }
 
+
+//button bindings
 document.getElementById("startButton").addEventListener("click", function(){changeDisplay("introScreen", "none");});
+
+var stances = ["pro", "geen", "contra"];
+var buttons = document.getElementsByClassName("stanceButtons");
+for(x = 0; x < stances.length; x++){
+    buttons[x].addEventListener("click", function(){answeredQuestion(stances[x])});
+}
 
 changeDisplay("introScreen", "none");
 questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
