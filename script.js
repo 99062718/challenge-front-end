@@ -65,7 +65,8 @@ function answeredQuestion(answer){
     currentQuestion++;
 
     if(currentQuestion == subjects.length){
-        finalScoreCalc();
+        changeDisplay("questionScreen", "none");
+        changeDisplay("importanceScreen", "block");
     } else {
         questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
     }
@@ -81,7 +82,13 @@ function finalScoreCalc(){
 
 
 //button bindings
-document.getElementById("startButton").addEventListener("click", function(){changeDisplay("introScreen", "none");});
+document.getElementById("startButton").addEventListener(
+    "click", function(){
+        changeDisplay("introScreen", "none");
+        changeDisplay("questionScreen", "block");
+        questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
+    }
+);
 
 var stances = ["pro", "geen", "contra"];
 var buttons = document.getElementsByClassName("stanceButtons");
@@ -90,4 +97,4 @@ for(x = 0; x < stances.length; x++){
 }
 
 changeDisplay("introScreen", "none");
-questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
+changeDisplay("importanceScreen", "block");

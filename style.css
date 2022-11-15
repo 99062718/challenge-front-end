@@ -32,6 +32,10 @@ body {
     display: inline;
 }
 
+.questionScreen, .importanceScreen {
+    display: none;
+}
+
 .buttonDiv {
     margin-top: 20vh;
     width: 90vh;
