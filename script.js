@@ -31,7 +31,7 @@ var questionScore = {};
 parties.splice(parties.length - 2, 1);
 
 //mostly used to show or hide groups of elements
-function changeDisplay(group, displayType){
+function changeDisplayClass(group, displayType){
     var elements = document.getElementsByClassName(group);
     for(x = 0; x < elements.length; x++){
         elements[x].style.display = displayType;
@@ -65,8 +65,8 @@ function answeredQuestion(answer){
     currentQuestion++;
 
     if(currentQuestion == subjects.length){
-        changeDisplay("questionScreen", "none");
-        changeDisplay("importanceScreen", "block");
+        changeDisplayClass("questionScreen", "none");
+        changeDisplayClass("importanceScreen", "block");
     } else {
         questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
     }
@@ -102,8 +102,8 @@ for(x = 0; x < subjects.length; x++){
 //button bindings
 document.getElementById("startButton").addEventListener(
     "click", function(){
-        changeDisplay("introScreen", "none");
-        changeDisplay("questionScreen", "block");
+        changeDisplayClass("introScreen", "none");
+        changeDisplayClass("questionScreen", "block");
         questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
     }
 );
@@ -114,5 +114,5 @@ for(x = 0; x < stances.length; x++){
     buttons[x].addEventListener("click", function(){answeredQuestion(stances[x])});
 }
 
-changeDisplay("introScreen", "none");
-changeDisplay("importanceScreen", "block");
+changeDisplayClass("introScreen", "none");
+changeDisplayClass("importanceScreen", "block");
