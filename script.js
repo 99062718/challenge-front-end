@@ -56,15 +56,15 @@ function questionGen(topic, question){
 
 //checks if question is already in questionScore or not
 function questionExistCheck(){
-    return currentQuestion in questionScore;
+    return subjects[currentQuestion]["title"] in questionScore;
 }
 
 //handles user answers and goes to next question
 function answeredQuestion(answer){
     if(!questionExistCheck()){
-        questionScore[currentQuestion] = {"subject": subjects[currentQuestion]["title"], "stance": answer, "multiplier": 1};
+        questionScore[subjects[currentQuestion]["title"]] = {"stance": answer, "multiplier": 1};
     } else {
-        questionScore[currentQuestion]["stance"] = answer;
+        questionScore[subjects[currentQuestion]["title"]]["stance"] = answer;
     }
 
     currentQuestion++;
@@ -72,6 +72,13 @@ function answeredQuestion(answer){
     if(currentQuestion == subjects.length){
         changeDisplayClass("questionScreen", "none");
         changeDisplayClass("importanceScreen", "block");
+        for(x = 0; x < subjects.length; x++){
+            if(subjects[x]["title"] in questionScore){
+                changeDisplayId(subjects[x]["title"], "block");
+            } else {
+                changeDisplayId(subjects[x]["title"], "none");
+            }
+        }
     } else {
         questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
     }
