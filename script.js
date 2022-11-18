@@ -38,6 +38,11 @@ function changeDisplayClass(group, displayType){
     }
 }
 
+//targets specific elements to hide or display
+function changeDisplayId(id, displayType){
+    document.getElementsById(id).style.display = displayType;
+}
+
 //changes text of elements
 function changeText(element, text){
     document.getElementById(element).innerHTML = text;
