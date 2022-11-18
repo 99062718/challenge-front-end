@@ -80,6 +80,24 @@ function finalScoreCalc(){
     }
 }
 
+//importance screen generation
+for(x = 0; x < subjects.length; x++){
+    var div = document.createElement("div");
+    div.id = subjects[x]["title"];
+
+    var checkBox = document.createElement("input");
+    checkBox.type = "checkbox";
+    checkBox.id = subjects[x]["title"] + "Input";
+
+    var label = document.createElement("label");
+    label.htmlFor = subjects[x]["title"] + "Input";
+    label.appendChild(document.createTextNode(subjects[x]["title"]));
+
+    document.getElementById("questionDiv").appendChild(div);
+    div.appendChild(checkBox);
+    div.appendChild(label);
+}
+
 
 //button bindings
 document.getElementById("startButton").addEventListener(
