@@ -14,12 +14,12 @@ var partijScore = {
     "SGP": 0,
     "DENK": 0,
     "Forum voor Democratie": 0,
-    "Lokaal in de kamer": 0,
+    "Lokaal in de Kamer": 0,
     "OndernemersPartij": 0,
     "VNL": 0,
     "Nieuwe Wegen": 0,
     "De Burger Beweging": 0,
-    "Piratenpatij": 0,
+    "Piratenpartij": 0,
     "Artikel 1": 0,
     "Libertarische Partij": 0,
     "50Plus": 0,
@@ -49,9 +49,14 @@ function changeText(element, text){
 }
 
 //generates new question
-function questionGen(topic, question){
+function questionGen(topic, question, stances){
     changeText("topicText", currentQuestion + 1 + ". " + topic);
     changeText("questionText", question);
+
+    for(x = 0; x < stances.length; x++){
+        document.getElementById(`${stances[x]["name"]} stance`).innerHTML = stances[x]["position"];
+        document.getElementById(`${stances[x]["name"]} opinion`).innerHTML = stances[x]["opinion"];
+    }
 }
 
 //checks if question is already in questionScore or not
@@ -80,7 +85,7 @@ function answeredQuestion(answer){
             }
         }
     } else {
-        questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
+        questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"], subjects[currentQuestion]["parties"]);
     }
 }
 
@@ -109,7 +114,7 @@ function goLastPage(){
     }
 
     currentQuestion--;
-    questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
+    questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"], subjects[currentQuestion]["parties"]);
 }
 
 //importance screen generation
@@ -130,6 +135,26 @@ for(x = 0; x < subjects.length; x++){
     div.appendChild(label);
 }
 
+//generates elements for questionStances div
+for(key in partijScore){
+    var div = document.createElement("div");
+    div.id = key;
+
+    var p1 = document.createElement("p");
+    p1.innerHTML = key;
+
+    var p2 = document.createElement("p");
+    p2.id = `${key} stance`;
+
+    var p3 = document.createElement("p");
+    p3.id = `${key} opinion`;
+
+    document.getElementById("questionStances").appendChild(div);
+    div.appendChild(p1);
+    div.appendChild(p2);
+    div.appendChild(p3);
+}
+
 
 //button bindings
 document.getElementById("startButton").addEventListener(
@@ -137,7 +162,7 @@ document.getElementById("startButton").addEventListener(
         changeDisplayClass("introScreen", "none");
         changeDisplayClass("questionScreen", "block");
         changeDisplayId("backButton", "block");
-        questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
+        questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"], subjects[currentQuestion]["parties"]);
     }
 );
 
@@ -149,5 +174,8 @@ for(x = 0; x < stances.length; x++){
 
 document.getElementById("backButton").addEventListener("click", function(){goLastPage();})
 
-changeDisplayClass("introScreen", "none");
-changeDisplayClass("importanceScreen", "block");
+var currentDisplay = "none";
+document.getElementById("stanceExpandButton").addEventListener("click", function(){
+    currentDisplay = currentDisplay == "none" ? "block" : "none"
+    changeDisplayId("questionStances", currentDisplay);
+})

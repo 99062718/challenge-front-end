@@ -32,7 +32,7 @@ body {
     display: inline;
 }
 
-.questionScreen, .importanceScreen, #backButton{
+.questionScreen, .importanceScreen, #backButton, #questionStances{
     display: none;
 }
 
