@@ -1,10 +1,13 @@
-body {
-    margin: auto;
+body, html{
+    height: 100%;
+    margin: 0;
 }
 
 #backgroundContainer {
     background-image: url("img/background.png");
-    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
     padding: 5vh;
     padding-left: 10vh;
     padding-right: 10vh;
@@ -12,7 +15,6 @@ body {
 
 #mainContainer {
     background-color: white;
-    height: 100%;
     width: 100%;
     border-radius: 1%;
     color: black;
@@ -25,6 +27,7 @@ body {
 }
 
 #footer {
+    position: fixed;
     width: 100%;
 }
 
@@ -38,7 +41,7 @@ body {
 
 .buttonDiv {
     margin-top: 20vh;
-    width: 90vh;
+    width: 90vw;
     height: 10vh;
 }
 
