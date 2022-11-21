@@ -1,4 +1,4 @@
-body, html{
+body, html {
     height: 100%;
     margin: 0;
 }
@@ -35,18 +35,22 @@ body, html{
     display: inline;
 }
 
-.questionScreen, .importanceScreen, #backButton, #questionStances{
+.questionScreen, .importanceScreen, #backButton, #questionStances {
     display: none;
 }
 
 .buttonDiv {
     margin-top: 20vh;
-    width: 90vw;
+    width: 60vw;
     height: 10vh;
 }
 
+#slaOver, #slaOver>p {
+    display: inline-block;
+}
+
 .buttonDiv button {
-    display: inline;
+    display: inline-block;
     height: 100%;
     width: 20%;
     color: white;

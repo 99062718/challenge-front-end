@@ -171,6 +171,10 @@ var buttons = document.getElementsByClassName("stanceButtons");
 for(x = 0; x < stances.length; x++){
     buttons[x].addEventListener("click", function(){answeredQuestion(stances[x]);});
 }
+document.getElementById("slaOver").addEventListener("click", function(){
+    currentQuestion++;
+    questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"], subjects[currentQuestion]["parties"]);
+})
 
 document.getElementById("backButton").addEventListener("click", function(){goLastPage();})
 
