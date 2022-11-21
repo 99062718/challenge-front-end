@@ -40,7 +40,7 @@ function changeDisplayClass(group, displayType){
 
 //targets specific elements to hide or display
 function changeDisplayId(id, displayType){
-    document.getElementsById(id).style.display = displayType;
+    document.getElementById(id).style.display = displayType;
 }
 
 //changes text of elements
@@ -92,6 +92,26 @@ function finalScoreCalc(){
     }
 }
 
+//checks which page to go to after pressing backButton
+function goLastPage(){
+    switch(currentQuestion){
+        case 0:
+            changeDisplayClass("introScreen", "block");
+            changeDisplayClass("questionScreen", "none");
+            changeDisplayId("backButton", "none");
+            return;
+        case 30:
+            changeDisplayClass("questionScreen", "block");
+            changeDisplayClass("importanceScreen", "none");
+            break;
+        default:
+            break;
+    }
+
+    currentQuestion--;
+    questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
+}
+
 //importance screen generation
 for(x = 0; x < subjects.length; x++){
     var div = document.createElement("div");
@@ -116,6 +136,7 @@ document.getElementById("startButton").addEventListener(
     "click", function(){
         changeDisplayClass("introScreen", "none");
         changeDisplayClass("questionScreen", "block");
+        changeDisplayId("backButton", "block");
         questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"]);
     }
 );
@@ -123,8 +144,10 @@ document.getElementById("startButton").addEventListener(
 var stances = ["pro", "geen", "contra"];
 var buttons = document.getElementsByClassName("stanceButtons");
 for(x = 0; x < stances.length; x++){
-    buttons[x].addEventListener("click", function(){answeredQuestion(stances[x])});
+    buttons[x].addEventListener("click", function(){answeredQuestion(stances[x]);});
 }
+
+document.getElementById("backButton").addEventListener("click", function(){goLastPage();})
 
 changeDisplayClass("introScreen", "none");
 changeDisplayClass("importanceScreen", "block");
