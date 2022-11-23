@@ -146,13 +146,27 @@ for(key in partijScore){
     var p2 = document.createElement("p");
     p2.id = `${key} stance`;
 
+    var div2 = document.createElement("div");
+    var i = document.createElement("i");
+    i.classList = "material-icons";
+    i.innerHTML = "chevron_right";
+
     var p3 = document.createElement("p");
     p3.id = `${key} opinion`;
+    p3.style.display = "none";
 
     document.getElementById("questionStances").appendChild(div);
     div.appendChild(p1);
     div.appendChild(p2);
+    div.appendChild(div2);
+    div2.appendChild(i);
     div.appendChild(p3);
+
+    div2.addEventListener("click", function(){
+        let parent = this.parentElement.id;
+        let currentDisplay = document.getElementById(`${parent} opinion`).style.display != "block" ? "block" : "none"
+        changeDisplayId(`${parent} opinion`, currentDisplay);
+    })
 }
 
 
