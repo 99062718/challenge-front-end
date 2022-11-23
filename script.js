@@ -137,32 +137,28 @@ for(x = 0; x < subjects.length; x++){
 
 //generates elements for questionStances div
 for(key in partijScore){
-    var div = document.createElement("div");
-    div.id = key;
+    var toCreate = ["div", "p", "p", "div", "i", "p"];
+    var elems = [];
+    for(x = 0; x < toCreate.length; x++){
+        elems.push(document.createElement(toCreate[x]));
+    }
+    
+    elems[0].id = key;
+    elems[1].innerHTML = key;
+    elems[2].id = `${key} stance`;
+    elems[4].classList = "material-icons";
+    elems[4].innerHTML = "chevron_right";
+    elems[5].id = `${key} opinion`;
+    elems[5].style.display = "none";
 
-    var p1 = document.createElement("p");
-    p1.innerHTML = key;
+    document.getElementById("questionStances").appendChild(elems[0]);
+    elems[0].appendChild(elems[1]);
+    elems[0].appendChild(elems[2]);
+    elems[0].appendChild(elems[3]);
+    elems[3].appendChild(elems[4]);
+    elems[0].appendChild(elems[5]);
 
-    var p2 = document.createElement("p");
-    p2.id = `${key} stance`;
-
-    var div2 = document.createElement("div");
-    var i = document.createElement("i");
-    i.classList = "material-icons";
-    i.innerHTML = "chevron_right";
-
-    var p3 = document.createElement("p");
-    p3.id = `${key} opinion`;
-    p3.style.display = "none";
-
-    document.getElementById("questionStances").appendChild(div);
-    div.appendChild(p1);
-    div.appendChild(p2);
-    div.appendChild(div2);
-    div2.appendChild(i);
-    div.appendChild(p3);
-
-    div2.addEventListener("click", function(){
+    elems[3].addEventListener("click", function(){
         let parent = this.parentElement.id;
         let currentDisplay = document.getElementById(`${parent} opinion`).style.display != "block" ? "block" : "none"
         changeDisplayId(`${parent} opinion`, currentDisplay);
