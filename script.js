@@ -89,6 +89,10 @@ function answeredQuestion(answer){
         questionScore[subjects[currentQuestion]["title"]]["stance"] = answer;
     }
 
+    nextQuestion();
+}
+
+function nextQuestion(){
     currentQuestion++;
 
     if(currentQuestion == subjects.length){
@@ -200,10 +204,7 @@ document.getElementById("startButton").addEventListener(
 for(let x = 0; x < buttons.length; x++){
     buttons[x].addEventListener("click", function(){answeredQuestion(this.id);});
 }
-document.getElementById("slaOver").addEventListener("click", function(){
-    currentQuestion++;
-    questionGen(subjects[currentQuestion]["title"], subjects[currentQuestion]["statement"], subjects[currentQuestion]["parties"]);
-})
+document.getElementById("slaOver").addEventListener("click", function(){nextQuestion();})
 
 document.getElementById("backButton").addEventListener("click", function(){goLastPage();})
 
