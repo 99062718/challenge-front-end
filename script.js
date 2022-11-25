@@ -192,3 +192,10 @@ document.getElementById("stanceExpandButton").addEventListener("click", function
     currentDisplay = currentDisplay == "none" ? "block" : "none"
     changeDisplayId("questionStances", currentDisplay);
 })
+
+document.getElementById("goToScoreButton").addEventListener("click", function(){
+    changeDisplayClass("importanceScreen", "none");
+    changeDisplayClass("scoreScreen", "block");
+    changeDisplayId("backButton", "none");
+    finalScoreCalc();
+})
