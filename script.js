@@ -27,6 +27,7 @@ var partijScore = {
     "Niet Stemmers": 0
 };
 var questionScore = {};
+var buttons = document.getElementsByClassName("stanceButtons");
 
 parties.splice(parties.length - 2, 1);
 
@@ -56,6 +57,22 @@ function questionGen(topic, question, stances){
     for(let x = 0; x < stances.length; x++){
         document.getElementById(`${stances[x]["name"]} stance`).innerHTML = stances[x]["position"];
         document.getElementById(`${stances[x]["name"]} opinion`).innerHTML = stances[x]["opinion"];
+    }
+
+    if(questionExistCheck()){
+        let colors = [];
+        for(let x = 0; x < buttons.length; x++){
+            colors.push(buttons[x].id == questionScore[subjects[currentQuestion]["title"]]["stance"] ? "blue" : "black");
+        }
+        changeButtonColors(colors);
+    } else {
+        changeButtonColors(["black", "black", "black"]);
+    }
+}
+
+function changeButtonColors(colors){
+    for(let x = 0; x < buttons.length; x++){
+        buttons[x].style.backgroundColor = colors[x];
     }
 }
 
@@ -176,7 +193,6 @@ document.getElementById("startButton").addEventListener(
     }
 );
 
-var buttons = document.getElementsByClassName("stanceButtons");
 for(let x = 0; x < buttons.length; x++){
     buttons[x].addEventListener("click", function(){answeredQuestion(this.id);});
 }
