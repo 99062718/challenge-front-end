@@ -106,10 +106,14 @@ function answeredQuestion(answer){
     }
 }
 
+
+// calculates score for each party
 function finalScoreCalc(){
-    for(let x = 0; x < subjects[currentQuestion]["parties"].length; x++){
-        if(subjects[currentQuestion]["parties"][x]["position"] == answer){
-            partijScore[subjects[currentQuestion]["parties"][x]["name"]]++;
+    for(let x = 0; x < subjects.length; x++){
+        if(subjects[x]["title"] in questionScore){
+            for(let y = 0; y < subjects[x]["parties"].length; y++){
+                partijScore[subjects[x]["parties"][y]["name"]] += questionScore[subjects[x]["title"]]["stance"] == subjects[x]["parties"][y]["position"] ? 1 * questionScore[subjects[x]["title"]]["multiplier"] : 0;
+            }
         }
     }
 }
